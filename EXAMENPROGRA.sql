@@ -1,0 +1,22 @@
+
+CREATE TABLE PELICULA
+(
+id NUMBER(5) GENERATED ALWAYS AS IDENTITY
+minvalue 1 maxvalue 99999
+start with 1
+INCREMENT by 1 
+CONSTRAINT PK_ID PRIMARY KEY,
+
+nombre VARCHAR(250) NOT NULL,
+director VARCHAR(100) NOT NULL,
+anno NUMBER(4) NOT NULL,
+duracion NUMBER(3) NOT NULL,
+genero VARCHAR(100) NOT NULL
+)
+;
+
+select * from pelicula;
+
+-- Nombre BD: EXAMENPROGRA
+-- WALLET: JAVIERITA_2
+-- Examenjava1 o Pruebaprogra1 ADMIN

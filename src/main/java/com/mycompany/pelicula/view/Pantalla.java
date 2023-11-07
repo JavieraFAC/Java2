@@ -5,6 +5,9 @@
 package com.mycompany.pelicula.view;
 
 import com.mycompany.pelicula.view.model.controller.DataSourceSample;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -144,10 +147,14 @@ public class Pantalla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgregarActionPerformed
-        AgregarPelicula AgregarPeli = new AgregarPelicula();
-        AgregarPeli.setVisible(true);
-        AgregarPeli.setLocationRelativeTo(null);
-        this.setVisible(false);
+        try {
+            AgregarPelicula AgregarPeli = new AgregarPelicula();
+            AgregarPeli.setVisible(true);
+            AgregarPeli.setLocationRelativeTo(null);
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jMenuItemAgregarActionPerformed
 

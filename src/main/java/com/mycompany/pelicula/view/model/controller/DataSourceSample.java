@@ -29,7 +29,7 @@ public class DataSourceSample {
 
    public void crearConexion() throws SQLException {
     // Conexion a base de datos ORACLE 
-        final String DB_URL = "jdbc:oracle:thin:@javierita2_high?TNS_ADMIN=./Wallet_Javierita_2";
+        final String DB_URL = "jdbc:oracle:thin:@javierita2_high?TNS_ADMIN=./Wallet_Javierita2";
         //final String DB_URL = "jdbc:oracle:thin:@(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=geb6679ab67d074_pgy2121_medium.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))";
         // Update the Database Username and Password to point to your Autonomous Database
         final String DB_USER = "Admin";

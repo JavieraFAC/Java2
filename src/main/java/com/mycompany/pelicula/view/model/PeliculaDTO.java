@@ -15,7 +15,7 @@ public class PeliculaDTO {
     
     public boolean agregarPelicula(Pelicula peliculaNueva, Connection conexion) throws SQLException{
         
-        String queryStatement = "INSERT TO PELICULA (NOMBRE,DIRECTOR,ANNO,DURACION,GENERO) VALUES(?,?,?,?,?)";
+        String queryStatement = "INSERT inTO PELICULA (NOMBRE,DIRECTOR,ANNO,DURACION,GENERO) VALUES(?,?,?,?,?)";
     
         System.out.println("\n Query is " + queryStatement);   
         

@@ -346,23 +346,16 @@ public class AgregarPelicula extends javax.swing.JFrame {
 
     private void jTextFieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreKeyTyped
        char c = evt.getKeyChar();
-       if((c<'a' || c>'z')&& (c<'A'||c>'Z')) 
+       if((c<'a' || c>'z')&& (c<'A'||c>'Z') && (c<'0'||c>'9')) 
        {evt.consume(); 
 
-       }
-       if(jTextFieldNombre.getText().length()==250){
-           evt.consume();
        }
     }//GEN-LAST:event_jTextFieldNombreKeyTyped
 
     private void jTextFieldGeneroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGeneroKeyTyped
        char c = evt.getKeyChar();
-       if((c<'a' || c>'z')&& (c<'A'||c>'Z')) 
+       if((c<'a' || c>'z')&& (c<'A'||c>'Z')&& (c<'0'||c>'9')) 
        {evt.consume(); 
-
-       } 
-       if(jTextFieldGenero.getText().length()==100){ 
-           evt.consume();
        }
     }//GEN-LAST:event_jTextFieldGeneroKeyTyped
 
@@ -370,11 +363,8 @@ public class AgregarPelicula extends javax.swing.JFrame {
        char c = evt.getKeyChar();
        if((c<'a' || c>'z')&& (c<'A'||c>'Z')) 
        {evt.consume(); 
-
        }
-       if(jTextFieldDirector.getText().length() == 100 ){           
-       evt.consume();
-    }
+
     }//GEN-LAST:event_jTextFieldDirectorKeyTyped
 
     private void jTextFieldAnnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldAnnoKeyTyped

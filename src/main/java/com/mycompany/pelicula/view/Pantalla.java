@@ -172,10 +172,14 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemEliminarActionPerformed
 
     private void jMenuItemModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModificarActionPerformed
-        Modificar ModificarPeli = new Modificar();
-        ModificarPeli.setVisible(true);
-        ModificarPeli.setLocationRelativeTo(null);
-        this.setVisible(false);
+        try{
+            Modificar ModificarPeli = new Modificar();
+            ModificarPeli.setVisible(true);
+            ModificarPeli.setLocationRelativeTo(null);
+            this.setVisible(false);
+        }catch(SQLException ex){
+             Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_jMenuItemModificarActionPerformed

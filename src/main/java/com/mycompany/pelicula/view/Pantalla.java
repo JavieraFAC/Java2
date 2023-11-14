@@ -4,10 +4,16 @@
  */
 package com.mycompany.pelicula.view;
 
+import com.mycompany.pelicula.view.model.Pelicula;
+import com.mycompany.pelicula.view.model.controller.PeliculaController;
 import com.mycompany.pelicula.view.model.controller.DataSourceSample;
+import com.mycompany.pelicula.view.model.Pelicula;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -18,10 +24,11 @@ public class Pantalla extends javax.swing.JFrame {
     /**
      * Creates new form Pantalla
      */
-    public Pantalla() {
+    public Pantalla() throws SQLException {
         initComponents();
-        DataSourceSample conector = new DataSourceSample();
-        // this.conexionOCI = conector.crearConexion(); ------------
+        this.conector = new DataSourceSample();
+        this.conector.crearConexion();
+
     }
 
     /**
@@ -147,10 +154,12 @@ public class Pantalla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgregarActionPerformed
+        
+        AgregarPelicula agregarPeli;
         try {
-            AgregarPelicula AgregarPeli = new AgregarPelicula();
-            AgregarPeli.setVisible(true);
-            AgregarPeli.setLocationRelativeTo(null);
+            agregarPeli = new AgregarPelicula(this.conector);
+            agregarPeli.setVisible(true);
+            agregarPeli.setLocationRelativeTo(null);
             this.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
@@ -165,17 +174,23 @@ public class Pantalla extends javax.swing.JFrame {
         this.setVisible(false);    }//GEN-LAST:event_jMenuItemListarActionPerformed
 
     private void jMenuItemEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEliminarActionPerformed
-        EliminarPelicula EliminarPeli = new EliminarPelicula();
-        EliminarPeli.setVisible(true);
-        EliminarPeli.setLocationRelativeTo(null);
+        EliminarPelicula eliminarPeli;
+        try{
+            eliminarPeli = new EliminarPelicula(this.conector);
+            eliminarPeli.setVisible(true);
+            eliminarPeli.setLocationRelativeTo(null);
         this.setVisible(false);
+        }catch(SQLException ex){
+             Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_jMenuItemEliminarActionPerformed
 
     private void jMenuItemModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModificarActionPerformed
+        Modificar modificarPeli;
         try{
-            Modificar ModificarPeli = new Modificar();
-            ModificarPeli.setVisible(true);
-            ModificarPeli.setLocationRelativeTo(null);
+            modificarPeli = new Modificar(this.conector);
+            modificarPeli.setVisible(true);
+            modificarPeli.setLocationRelativeTo(null);
             this.setVisible(false);
         }catch(SQLException ex){
              Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
@@ -184,10 +199,8 @@ public class Pantalla extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItemModificarActionPerformed
 
-
-    // -------- protected Connection conexionOCI ---------
-    
-    
+    protected Connection conexionOCI;
+    protected DataSourceSample conector;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

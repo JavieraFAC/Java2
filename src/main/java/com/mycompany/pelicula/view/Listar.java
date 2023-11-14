@@ -4,6 +4,10 @@
  */
 package com.mycompany.pelicula.view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author javieraalvarezcabrera
@@ -78,10 +82,16 @@ public class Listar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolverListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverListarActionPerformed
-        Pantalla pantalla = new Pantalla();
-        pantalla.setVisible(true);
-        pantalla.setLocationRelativeTo(null);
+        Pantalla pantalla;
+        try {
+            pantalla = new Pantalla();
+            pantalla.setVisible(true);
+            pantalla.setLocationRelativeTo(null);
         this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(Listar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButtonVolverListarActionPerformed
 
 

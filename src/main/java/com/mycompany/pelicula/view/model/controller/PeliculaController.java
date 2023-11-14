@@ -22,14 +22,14 @@ public class PeliculaController {
     
     
     public boolean buscarPeliculaController (Pelicula peliculaBusqueda, Connection conexion) throws SQLException{
-        Pelicula pelicula = new Pelicula();
+        PeliculaDTO pelicula = new PeliculaDTO();
         
         return pelicula.buscarPelicula(peliculaBusqueda,conexion);
     }
     
-    public boolean modificarPeliculaController (Pelicula peliculaModificada, Connection conexion)throws SQLException{
+    public boolean modificarPeliculaController (Pelicula peliculaNueva, Connection conexion)throws SQLException{
         PeliculaDTO pelicula = new PeliculaDTO();
-        pelicula.peliculaModificada(peliculaModificada, conexion);
+        pelicula.peliculaModificada(peliculaNueva, conexion);
         return true;
     }
         

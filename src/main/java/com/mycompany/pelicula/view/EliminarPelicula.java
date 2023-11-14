@@ -4,6 +4,17 @@
  */
 package com.mycompany.pelicula.view;
 
+import com.mycompany.pelicula.view.model.Pelicula;
+import com.mycompany.pelicula.view.model.controller.PeliculaController;
+import com.mycompany.pelicula.view.model.controller.DataSourceSample;
+import com.mycompany.pelicula.view.model.PeliculaDTO;
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author javieraalvarezcabrera
@@ -13,8 +24,11 @@ public class EliminarPelicula extends javax.swing.JFrame {
     /**
      * Creates new form EliminarPelicula
      */
-    public EliminarPelicula() {
+    public EliminarPelicula(DataSourceSample conn) throws SQLException {
         initComponents();
+        this.conector = conn;
+        this.conector.setConn(conn.getConn());
+        
     }
 
     /**
@@ -47,7 +61,7 @@ public class EliminarPelicula extends javax.swing.JFrame {
         jTextFieldIDEliminar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldIDEliminar.setMaximumSize(new java.awt.Dimension(64, 23));
 
-        jLabelIDEliminar.setText("ID :");
+        jLabelIDEliminar.setText("Nombre :");
 
         jButtonEliminar.setText("ELIMINAR");
         jButtonEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -68,7 +82,7 @@ public class EliminarPelicula extends javax.swing.JFrame {
         });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Ingresa el ID de la pelicula que quieres eliminar");
+        jLabel1.setText("Ingresa el Nombre de la pelicula que quieres eliminar");
 
         jPanel2.setBackground(new java.awt.Color(199, 227, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true)), "Informacion", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -141,17 +155,24 @@ public class EliminarPelicula extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolver2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolver2ActionPerformed
-        Pantalla pantalla = new Pantalla();
-        pantalla.setVisible(true);
-        pantalla.setLocationRelativeTo(null);
+        Pantalla pantalla;
+        try {
+            pantalla = new Pantalla();
+            pantalla.setVisible(true);
+            pantalla.setLocationRelativeTo(null);
         this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(EliminarPelicula.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButtonVolver2ActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
-
+    protected Connection conexionOCI;
+    protected DataSourceSample conector;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonVolver2;

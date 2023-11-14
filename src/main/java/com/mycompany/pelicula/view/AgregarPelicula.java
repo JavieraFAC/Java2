@@ -8,6 +8,7 @@ import com.mycompany.pelicula.view.model.Pelicula;
 import com.mycompany.pelicula.view.model.controller.PeliculaController;
 import com.mycompany.pelicula.view.model.controller.DataSourceSample;
 import com.mycompany.pelicula.view.model.Pelicula;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,10 +25,10 @@ public class AgregarPelicula extends javax.swing.JFrame {
     /**
      * Creates new form AgregarPelicula
      */
-    public AgregarPelicula() throws SQLException {
+    public AgregarPelicula(DataSourceSample conn) throws SQLException {
         initComponents();
-        this.conector = new DataSourceSample();
-        this.conector.crearConexion();
+        this.conector = conn;
+        this.conector.setConn(conn.getConn());
 
     }
 
@@ -296,48 +297,60 @@ public class AgregarPelicula extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldGeneroActionPerformed
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
-        
+        // tirar por pantalla 
         System.out.println("Nombre pelicula :"+jTextFieldNombre.getText());
         System.out.println("Director: "+jTextFieldDirector.getText());
         System.out.println("Año: "+jTextFieldAnno.getText());
         System.out.println("Duracion: "+jTextFieldDuracion.getText());
         System.out.println("Genero: "+jTextFieldGenero.getText());
-        
-        
-      
-        
+   
         // AGREGAR a lista peliculas
-        
-        Pelicula peliculaNueva = new Pelicula();
-     
-        peliculaNueva.setNombre(jTextFieldNombre.getText());
-        peliculaNueva.setDirector(jTextFieldDirector.getText());
-        peliculaNueva.setAnno(Integer.valueOf(jTextFieldAnno.getText()));
-        peliculaNueva.setDuracion(Integer.valueOf(jTextFieldDuracion.getText()));
-        peliculaNueva.setGenero(jTextFieldGenero.getText());
-        
-        
-        
+        // validar datos 
+/*            if
+            (jTextFieldNombre.getText().isEmpty() ||
+            jTextFieldDirector.getText().isEmpty() ||
+            jTextFieldAnno.getText().isEmpty() ||
+            jTextFieldDuracion.getText().isEmpty() ||
+            jTextFieldGenero.getText().isEmpty())
+            */
+       
+                Pelicula peliculaNueva = new Pelicula();
+                peliculaNueva.setNombre(jTextFieldNombre.getText());
+                peliculaNueva.setDirector(jTextFieldDirector.getText());
+                peliculaNueva.setAnno(Integer.valueOf(jTextFieldAnno.getText()));
+                peliculaNueva.setDuracion(Integer.valueOf(jTextFieldDuracion.getText()));
+                peliculaNueva.setGenero(jTextFieldGenero.getText());
+                
                 PeliculaController controlador = new PeliculaController();
-            jTextFieldNombre.setText("");
-            jTextFieldDirector.setText("");
-            jTextFieldAnno.setText("");
-            jTextFieldDuracion.setText("");
-            jTextFieldGenero.setText("");
-        try {
-            controlador.agregarPeliculaController(peliculaNueva, this.conector.getConn());
-        } catch (SQLException ex) {
-            Logger.getLogger(AgregarPelicula.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+                JOptionPane.showMessageDialog(null, "Se agrego la pelicula:  " + peliculaNueva.getNombre());
+                        // limpiar campos
+                    jTextFieldNombre.setText("");
+                    jTextFieldDirector.setText("");
+                    jTextFieldAnno.setText("");
+                    jTextFieldDuracion.setText("");
+                    jTextFieldGenero.setText("");     
+               
+                try {
+                    controlador.agregarPeliculaController(peliculaNueva, this.conector.getConn());
+     
+                } catch (SQLException ex) {
+                    Logger.getLogger(AgregarPelicula.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
         
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        Pantalla pantalla = new Pantalla();
-        pantalla.setVisible(true);
-        pantalla.setLocationRelativeTo(null);
+        Pantalla pantalla;
+        try {
+            pantalla = new Pantalla();
+            pantalla.setVisible(true);
+            pantalla.setLocationRelativeTo(null);
         this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarPelicula.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
@@ -351,31 +364,32 @@ public class AgregarPelicula extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     private void jTextFieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreKeyTyped
-       char c = evt.getKeyChar();
-       if((c<'a' || c>'z')&& (c<'A'||c>'Z') && (c<'0'||c>'9')) 
+        Character c = evt.getKeyChar();
+        if(!Character.isLetter(c) && c != KeyEvent.VK_SPACE  && !Character.isDigit(c))
        {evt.consume(); 
 
        }
     }//GEN-LAST:event_jTextFieldNombreKeyTyped
 
     private void jTextFieldGeneroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGeneroKeyTyped
-       char c = evt.getKeyChar();
-       if((c<'a' || c>'z')&& (c<'A'||c>'Z')&& (c<'0'||c>'9')) 
+        Character c = evt.getKeyChar();
+        if(!Character.isLetter(c) && c != KeyEvent.VK_SPACE  && !Character.isDigit(c))
        {evt.consume(); 
        }
     }//GEN-LAST:event_jTextFieldGeneroKeyTyped
 
     private void jTextFieldDirectorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDirectorKeyTyped
-       char c = evt.getKeyChar();
-       if((c<'a' || c>'z')&& (c<'A'||c>'Z')) 
+        Character c = evt.getKeyChar();
+        if(!Character.isLetter(c) && c != KeyEvent.VK_SPACE  && !Character.isDigit(c))
        {evt.consume(); 
        }
 
     }//GEN-LAST:event_jTextFieldDirectorKeyTyped
 
     private void jTextFieldAnnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldAnnoKeyTyped
-        char c = evt.getKeyChar();
-        if(c<'0'||c>'9'){
+        Character c = evt.getKeyChar();
+        if(!Character.isDigit(c))
+       {
             evt.consume();
         }
         if (jTextFieldAnno.getText().length() == 4){
@@ -384,8 +398,9 @@ public class AgregarPelicula extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldAnnoKeyTyped
 
     private void jTextFieldDuracionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDuracionKeyTyped
-        char c = evt.getKeyChar();
-        if(c<'0'||c>'9'){
+        Character c = evt.getKeyChar();
+        if(!Character.isDigit(c))
+       {
             evt.consume();
         }
         if (jTextFieldDuracion.getText().length() == 3){
@@ -394,28 +409,6 @@ public class AgregarPelicula extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldDuracionKeyTyped
 
     /// VALIDACIONES
-    public void validarCamposVacios(){
-        if (jTextFieldNombre.getText().isEmpty()){
-            jLabelObligatorio.setText("Campo obligatorio");}
-        else{
-            jLabelObligatorio.setText("");   
-    }
-        
-        if (jTextFieldGenero.getText().isEmpty()){
-            jLabelObligatorio.setText("Campo obligatorio");}
-        else{
-            jLabelObligatorio.setText("");   
-    }
-        if (jTextFieldDirector.getText().isEmpty()){
-            jLabelObligatorio.setText("Campo obligatorio");}
-        else{
-            jLabelObligatorio.setText("");   
-    }
-        
-        
-        
-    }
-    
     
     protected Connection conexionOCI;
     protected DataSourceSample conector;

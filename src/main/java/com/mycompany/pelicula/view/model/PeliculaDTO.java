@@ -37,9 +37,11 @@ public class PeliculaDTO {
 
     
     public boolean buscarPelicula(Pelicula peliculaBusqueda, Connection conexion)throws SQLException{
-        String queryStatement ="SELECT nombre,director,anno,duracion,genero FROM"+conexion.getSchema() +".PELICULA WHERE NOMBRE=?";
-        System.out.println("Query is"+queryStatement);
-        PreparedStatement ps = conexion.prepareStatement(queryStatement);
+        
+        String query ="SELECT ID, NOMBRE, DIRECTOR , ANNO, DURACION, GENERO FROM "+conexion.getSchema() +".PELICULA WHERE NOMBRE=?";
+        System.out.println("Query is"+query);
+        
+        PreparedStatement ps = conexion.prepareStatement(query);
         
         ps.setString(1, peliculaBusqueda.getNombre());
         ResultSet rs = ps.executeQuery();
@@ -60,7 +62,7 @@ public class PeliculaDTO {
     
     
    public boolean peliculaModificada(Pelicula peliculaNueva, Connection conexion) throws SQLException{
-        String queryStatement ="SELECT nombre,director,anno,duracion,genero FROM"+conexion.getSchema() +".PELICULA WHERE NOMBRE=?";
+        String queryStatement ="UPDATE "+conexion.getSchema()+".PELICULA SET NOMBRE=?, DIRECTOR=?, ANNO=?, DURACION=?, GENERO=? WHERE ID=?";
         System.out.println("Query is"+queryStatement);
         PreparedStatement ps = conexion.prepareStatement(queryStatement);
         
@@ -69,10 +71,9 @@ public class PeliculaDTO {
         ps.setInt(3, peliculaNueva.getAnno());
         ps.setInt(4,peliculaNueva.getDuracion());
         ps.setString(5, peliculaNueva.getGenero());
+        ps.setInt(6,peliculaNueva.getId());
         
-        int result = ps.executeUpdate();
-        
-        System.out.println("Pelicula modificada: "+result);
+        System.out.println("Pelicula modificada: ");
         return true;
 
         

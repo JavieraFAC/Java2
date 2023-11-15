@@ -32,7 +32,12 @@ public class PeliculaController {
         pelicula.peliculaModificada(peliculaNueva, conexion);
         return true;
     }
-        
+    
+    public boolean eliminarPeliculaController (Pelicula peliculaEliminar, Connection conexion) throws SQLException{
+        PeliculaDTO pelicula = new PeliculaDTO();
+        pelicula.eliminarPelicula(peliculaEliminar, conexion);
+        return true;
+    }
 
     
 }

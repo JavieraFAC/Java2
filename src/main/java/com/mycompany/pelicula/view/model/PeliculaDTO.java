@@ -73,11 +73,32 @@ public class PeliculaDTO {
         ps.setString(5, peliculaNueva.getGenero());
         ps.setInt(6,peliculaNueva.getId());
         
-        System.out.println("Pelicula modificada: ");
+        int resultado = ps.executeUpdate();
+        
+        System.out.println("Pelicula modificada: "+resultado);
         return true;
 
         
     }
+   
+   public boolean eliminarPelicula(Pelicula peliculaEliminar, Connection conexion) throws SQLException{
+        String queryStatement ="DELETE "+conexion.getSchema()+".PELICULA SET NOMBRE=?, DIRECTOR=?, ANNO=?, DURACION=?, GENERO=? WHERE ID=?";
+        System.out.println("Query is"+queryStatement);
+        PreparedStatement ps = conexion.prepareStatement(queryStatement);
+        
+        ps.setString(1, peliculaEliminar.getNombre());
+        ps.setString(2, peliculaEliminar.getDirector());
+        ps.setInt(3, peliculaEliminar.getAnno());
+        ps.setInt(4,peliculaEliminar.getDuracion());
+        ps.setString(5, peliculaEliminar.getGenero());
+        ps.setInt(6,peliculaEliminar.getId());
+        
+        int resultado = ps.executeUpdate();
+        
+        System.out.println("Se eliminó la pelicula: "+resultado);
+        return true;
+        
+   }
 
 
 

@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 
@@ -75,6 +76,11 @@ public class Modificar extends javax.swing.JFrame {
                 jTextFieldNombreActionPerformed(evt);
             }
         });
+        jTextFieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNombreKeyTyped(evt);
+            }
+        });
 
         jLabelIDEliminar.setText("NOMBRE :");
 
@@ -98,6 +104,11 @@ public class Modificar extends javax.swing.JFrame {
                 jTextFieldDirectorActionPerformed(evt);
             }
         });
+        jTextFieldDirector.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldDirectorKeyTyped(evt);
+            }
+        });
 
         jTextFieldAnno.setBackground(new java.awt.Color(234, 234, 234));
         jTextFieldAnno.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -108,6 +119,11 @@ public class Modificar extends javax.swing.JFrame {
                 jTextFieldAnnoActionPerformed(evt);
             }
         });
+        jTextFieldAnno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldAnnoKeyTyped(evt);
+            }
+        });
 
         jTextFieldDuracion.setBackground(new java.awt.Color(234, 234, 234));
         jTextFieldDuracion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -116,6 +132,11 @@ public class Modificar extends javax.swing.JFrame {
         jTextFieldDuracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldDuracionActionPerformed(evt);
+            }
+        });
+        jTextFieldDuracion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldDuracionKeyTyped(evt);
             }
         });
 
@@ -132,6 +153,11 @@ public class Modificar extends javax.swing.JFrame {
         jTextFieldGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldGeneroActionPerformed(evt);
+            }
+        });
+        jTextFieldGenero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldGeneroKeyTyped(evt);
             }
         });
 
@@ -190,10 +216,11 @@ public class Modificar extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelIDEliminar)
-                    .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelIDEliminar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,24 +322,160 @@ public class Modificar extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-        Pelicula peliculaNueva = new Pelicula();
-        System.out.println(id);
-        peliculaNueva.setId(id);
-        peliculaNueva.setNombre(jTextFieldNombre.getText());
-        peliculaNueva.setDirector(jTextFieldDirector.getText());
-        peliculaNueva.setAnno(Integer.valueOf(jTextFieldAnno.getText()));
-        peliculaNueva.setDuracion(Integer.valueOf(jTextFieldDuracion.getText()));
-        peliculaNueva.setGenero(jTextFieldGenero.getText());
-        
-        PeliculaController controlador = new PeliculaController();
-        JOptionPane.showMessageDialog(null, "Se modifico la pelicula:  " + peliculaNueva.getNombre());
-        try{
-            controlador.modificarPeliculaController(peliculaNueva,this.conector.getConn());       
-        }  catch (SQLException ex) {
-            Logger.getLogger(AgregarPelicula.class.getName()).log(Level.SEVERE, null, ex);
+             if ((Integer.parseInt(this.jTextFieldAnno.getText()) < 1900)) {
+            JOptionPane.showMessageDialog(null, "El año debe ser mayor a 1900", "error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            // validar datos vacios
+            if (jTextFieldNombre.getText().isEmpty()
+                    || jTextFieldDirector.getText().isEmpty()
+                    || jTextFieldAnno.getText().isEmpty()
+                    || jTextFieldDuracion.getText().isEmpty()
+                    || jTextFieldGenero.getText().isEmpty()) {
+
+                JOptionPane.showMessageDialog(null, "Se deben rellenar todos los campos", "error", JOptionPane.ERROR_MESSAGE);
+            } else {
+
+                Pelicula peliculaNueva = new Pelicula();
+                System.out.println(id);
+                peliculaNueva.setId(id);
+                peliculaNueva.setNombre(jTextFieldNombre.getText());
+                peliculaNueva.setDirector(jTextFieldDirector.getText());
+                peliculaNueva.setAnno(Integer.valueOf(jTextFieldAnno.getText()));
+                peliculaNueva.setDuracion(Integer.valueOf(jTextFieldDuracion.getText()));
+                peliculaNueva.setGenero(jTextFieldGenero.getText());
+
+                PeliculaController controlador = new PeliculaController();
+                JOptionPane.showMessageDialog(null, "Se modifico la pelicula:  " + peliculaNueva.getNombre());
+                try {
+                    controlador.modificarPeliculaController(peliculaNueva, this.conector.getConn());
+                } catch (SQLException ex) {
+                    Logger.getLogger(AgregarPelicula.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
+    
+    // -------------VALIDACIONES ---------------
+    private void jTextFieldDirectorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDirectorKeyTyped
+        Character c = evt.getKeyChar();
+        if (!Character.isLetter(c) && c != KeyEvent.VK_SPACE && !Character.isDigit(c)) {
+            evt.consume();
+        }
+        if (jTextFieldDirector.getText().length() == 100) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldDirectorKeyTyped
+
+    private void jTextFieldAnnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldAnnoKeyTyped
+        Character c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+        if (jTextFieldAnno.getText().length() == 4) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldAnnoKeyTyped
+
+    private void jTextFieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreKeyTyped
+        Character c = evt.getKeyChar();
+        if (!Character.isLetter(c) && c != KeyEvent.VK_SPACE && !Character.isDigit(c)) {
+            evt.consume();
+
+        }
+        if (jTextFieldNombre.getText().length() == 250) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldNombreKeyTyped
+
+    private void jTextFieldDuracionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDuracionKeyTyped
+        Character c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+        if (jTextFieldDuracion.getText().length() == 3) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldDuracionKeyTyped
+
+    private void jTextFieldGeneroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGeneroKeyTyped
+        Character c = evt.getKeyChar();
+        if (!Character.isLetter(c) && c != KeyEvent.VK_SPACE && !Character.isDigit(c)) {
+            evt.consume();
+        }
+        if (jTextFieldGenero.getText().length() == 100) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldGeneroKeyTyped
+
+    // -------------------BOTONES -------------
+    private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // tirar por pantalla 
+        System.out.println("Nombre pelicula :" + jTextFieldNombre.getText());
+        System.out.println("Director: " + jTextFieldDirector.getText());
+        System.out.println("Año: " + jTextFieldAnno.getText());
+        System.out.println("Duracion: " + jTextFieldDuracion.getText());
+        System.out.println("Genero: " + jTextFieldGenero.getText());
+
+        // AGREGAR a lista peliculas
+        // validar año mayor a 1900
+        if ((Integer.parseInt(this.jTextFieldAnno.getText()) < 1900)) {
+            JOptionPane.showMessageDialog(null, "El año debe ser mayor a 1900", "error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            // validar datos vacios
+            if (jTextFieldNombre.getText().isEmpty()
+                    || jTextFieldDirector.getText().isEmpty()
+                    || jTextFieldAnno.getText().isEmpty()
+                    || jTextFieldDuracion.getText().isEmpty()
+                    || jTextFieldGenero.getText().isEmpty()) {
+
+                JOptionPane.showMessageDialog(null, "Se deben rellenar todos los campos", "error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Pelicula peliculaNueva = new Pelicula();
+                peliculaNueva.setNombre(jTextFieldNombre.getText());
+                peliculaNueva.setDirector(jTextFieldDirector.getText());
+                peliculaNueva.setAnno(Integer.valueOf(jTextFieldAnno.getText()));
+                peliculaNueva.setDuracion(Integer.valueOf(jTextFieldDuracion.getText()));
+                peliculaNueva.setGenero(jTextFieldGenero.getText());
+
+                PeliculaController controlador = new PeliculaController();
+                JOptionPane.showMessageDialog(null, "Se agrego la pelicula:  " + peliculaNueva.getNombre());
+                // limpiar campos
+                jTextFieldNombre.setText("");
+                jTextFieldDirector.setText("");
+                jTextFieldAnno.setText("");
+                jTextFieldDuracion.setText("");
+                jTextFieldGenero.setText("");
+
+                try {
+                    controlador.agregarPeliculaController(peliculaNueva, this.conector.getConn());
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(AgregarPelicula.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+
+    }                                              
+
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        Pantalla pantalla;
+        try {
+            pantalla = new Pantalla(this.conector);
+            pantalla.setVisible(true);
+            pantalla.setLocationRelativeTo(null);
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarPelicula.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }                                             
+                                             
+
+    
     /// VALIDACIONES
     
     protected Connection conexionOCI;

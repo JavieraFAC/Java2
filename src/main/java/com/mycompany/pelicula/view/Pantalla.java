@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.mycompany.pelicula.view;
 
 import com.mycompany.pelicula.view.model.Pelicula;
@@ -15,15 +12,8 @@ import java.sql.Connection;
 import javax.swing.JOptionPane;
 
 
-/**
- *
- * @author javieraalvarezcabrera
- */
 public class Pantalla extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Pantalla
-     */
     public Pantalla() throws SQLException {
         initComponents();
         this.conector = new DataSourceSample();

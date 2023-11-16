@@ -245,9 +245,9 @@ public class AgregarPelicula extends javax.swing.JFrame {
                     .addComponent(jTextFieldGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelGenero))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonVolver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,50 +292,53 @@ public class AgregarPelicula extends javax.swing.JFrame {
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
         // tirar por pantalla 
-        System.out.println("Nombre pelicula :"+jTextFieldNombre.getText());
-        System.out.println("Director: "+jTextFieldDirector.getText());
-        System.out.println("Año: "+jTextFieldAnno.getText());
-        System.out.println("Duracion: "+jTextFieldDuracion.getText());
-        System.out.println("Genero: "+jTextFieldGenero.getText());
-   
-        
+        System.out.println("Nombre pelicula :" + jTextFieldNombre.getText());
+        System.out.println("Director: " + jTextFieldDirector.getText());
+        System.out.println("Año: " + jTextFieldAnno.getText());
+        System.out.println("Duracion: " + jTextFieldDuracion.getText());
+        System.out.println("Genero: " + jTextFieldGenero.getText());
+
         // AGREGAR a lista peliculas
-        // validar datos vacios
-         if
-            (jTextFieldNombre.getText().isEmpty() ||
-            jTextFieldDirector.getText().isEmpty() ||
-            jTextFieldAnno.getText().isEmpty() ||
-            jTextFieldDuracion.getText().isEmpty() ||
-            jTextFieldGenero.getText().isEmpty()){
-             
-            JOptionPane.showMessageDialog(null, "Se deben rellenar todos los campos","error",JOptionPane.ERROR_MESSAGE);
-         }else{
-             Pelicula peliculaNueva = new Pelicula();
+        // validar año mayor a 1900
+        if ((Integer.parseInt(this.jTextFieldAnno.getText()) < 1900)) {
+            JOptionPane.showMessageDialog(null, "El año debe ser mayor a 1900", "error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            // validar datos vacios
+            if (jTextFieldNombre.getText().isEmpty()
+                    || jTextFieldDirector.getText().isEmpty()
+                    || jTextFieldAnno.getText().isEmpty()
+                    || jTextFieldDuracion.getText().isEmpty()
+                    || jTextFieldGenero.getText().isEmpty()) {
+
+                JOptionPane.showMessageDialog(null, "Se deben rellenar todos los campos", "error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Pelicula peliculaNueva = new Pelicula();
                 peliculaNueva.setNombre(jTextFieldNombre.getText());
                 peliculaNueva.setDirector(jTextFieldDirector.getText());
                 peliculaNueva.setAnno(Integer.valueOf(jTextFieldAnno.getText()));
                 peliculaNueva.setDuracion(Integer.valueOf(jTextFieldDuracion.getText()));
                 peliculaNueva.setGenero(jTextFieldGenero.getText());
-                
+
                 PeliculaController controlador = new PeliculaController();
                 JOptionPane.showMessageDialog(null, "Se agrego la pelicula:  " + peliculaNueva.getNombre());
-                        // limpiar campos
-                    jTextFieldNombre.setText("");
-                    jTextFieldDirector.setText("");
-                    jTextFieldAnno.setText("");
-                    jTextFieldDuracion.setText("");
-                    jTextFieldGenero.setText("");     
-               
+                // limpiar campos
+                jTextFieldNombre.setText("");
+                jTextFieldDirector.setText("");
+                jTextFieldAnno.setText("");
+                jTextFieldDuracion.setText("");
+                jTextFieldGenero.setText("");
+
                 try {
                     controlador.agregarPeliculaController(peliculaNueva, this.conector.getConn());
-     
+
                 } catch (SQLException ex) {
                     Logger.getLogger(AgregarPelicula.class.getName()).log(Level.SEVERE, null, ex);
                 }
-         }
-                
+            }
+        }
 
-        
+
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
@@ -360,13 +363,16 @@ public class AgregarPelicula extends javax.swing.JFrame {
         jTextFieldGenero.setText("");
         
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
-
+// -------------- VALIDACIONES DE INGRESO DE TEXTO ------------
     private void jTextFieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreKeyTyped
         Character c = evt.getKeyChar();
         if(!Character.isLetter(c) && c != KeyEvent.VK_SPACE  && !Character.isDigit(c))
        {evt.consume(); 
 
        }
+                if (jTextFieldNombre.getText().length() == 250){
+            evt.consume();
+        }
     }//GEN-LAST:event_jTextFieldNombreKeyTyped
 
     private void jTextFieldGeneroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGeneroKeyTyped
@@ -374,6 +380,9 @@ public class AgregarPelicula extends javax.swing.JFrame {
         if(!Character.isLetter(c) && c != KeyEvent.VK_SPACE  && !Character.isDigit(c))
        {evt.consume(); 
        }
+                if (jTextFieldGenero.getText().length() == 100){
+            evt.consume();
+        }
     }//GEN-LAST:event_jTextFieldGeneroKeyTyped
 
     private void jTextFieldDirectorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDirectorKeyTyped
@@ -381,6 +390,9 @@ public class AgregarPelicula extends javax.swing.JFrame {
         if(!Character.isLetter(c) && c != KeyEvent.VK_SPACE  && !Character.isDigit(c))
        {evt.consume(); 
        }
+                if (jTextFieldDirector.getText().length() == 100){
+            evt.consume();
+        }
 
     }//GEN-LAST:event_jTextFieldDirectorKeyTyped
 

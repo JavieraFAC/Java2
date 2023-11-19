@@ -266,7 +266,7 @@ public class Modificar extends javax.swing.JFrame {
             pantalla.setLocationRelativeTo(null);
             this.setVisible(false);
         } catch (SQLException ex) {
-            Logger.getLogger(AgregarPelicula.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Modificar.class.getName()).log(Level.SEVERE, null, ex);
         }
 
        }//GEN-LAST:event_jButtonVolverModActionPerformed
@@ -292,7 +292,7 @@ public class Modificar extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No se encontro la pelicula "+pelicula.getNombre());
             }
             }catch (SQLException ex) {
-            Logger.getLogger(AgregarPelicula.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Modificar.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         System.out.println(pelicula.toString());
@@ -347,6 +347,12 @@ public class Modificar extends javax.swing.JFrame {
 
                 PeliculaController controlador = new PeliculaController();
                 JOptionPane.showMessageDialog(null, "Se modifico la pelicula:  " + peliculaNueva.getNombre());
+                        jTextFieldNombre.setText("");
+                        jTextFieldDirector.setText("");
+                        jTextFieldAnno.setText("");
+                        jTextFieldDuracion.setText("");
+                        jTextFieldGenero.setText("");
+                
                 try {
                     controlador.modificarPeliculaController(peliculaNueva, this.conector.getConn());
                 } catch (SQLException ex) {

@@ -7,6 +7,8 @@ import com.mycompany.pelicula.view.model.PeliculaDTO;
 import com.mycompany.pelicula.view.model.Pelicula;
 import java.util.logging.Logger;
 import com.mycompany.pelicula.view.Modificar;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -38,6 +40,12 @@ public class PeliculaController {
         pelicula.eliminarPelicula(peliculaEliminar, conexion);
         return true;
     }
-
     
+    
+    public ArrayList<Pelicula> listarPeliculasController(Connection conexion) throws SQLException{
+        PeliculaDTO pelicula = new PeliculaDTO();
+        
+        return pelicula.listarPelicula((Connection) conexion);
+    }
+   
 }

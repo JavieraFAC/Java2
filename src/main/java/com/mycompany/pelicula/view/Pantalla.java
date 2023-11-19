@@ -201,6 +201,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemModificarActionPerformed
 
     private void jMenuItemListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarActionPerformed
+        
         Listar listarPeli;
         try {
             listarPeli = new Listar(this.conector);

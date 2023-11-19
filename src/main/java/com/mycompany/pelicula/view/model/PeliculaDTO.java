@@ -7,6 +7,8 @@ import com.mycompany.pelicula.view.model.controller.DataSourceSample;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class PeliculaDTO {
@@ -82,16 +84,12 @@ public class PeliculaDTO {
     }
    
    public boolean eliminarPelicula(Pelicula peliculaEliminar, Connection conexion) throws SQLException{
-        String queryStatement ="DELETE "+conexion.getSchema()+".PELICULA SET NOMBRE=?, DIRECTOR=?, ANNO=?, DURACION=?, GENERO=? WHERE ID=?";
+        String queryStatement ="DELETE "+conexion.getSchema()+".PELICULA WHERE ID=?";
         System.out.println("Query is"+queryStatement);
         PreparedStatement ps = conexion.prepareStatement(queryStatement);
         
-        ps.setString(1, peliculaEliminar.getNombre());
-        ps.setString(2, peliculaEliminar.getDirector());
-        ps.setInt(3, peliculaEliminar.getAnno());
-        ps.setInt(4,peliculaEliminar.getDuracion());
-        ps.setString(5, peliculaEliminar.getGenero());
-        ps.setInt(6,peliculaEliminar.getId());
+
+        ps.setInt(1,peliculaEliminar.getId());
         
         int resultado = ps.executeUpdate();
         
@@ -99,6 +97,35 @@ public class PeliculaDTO {
         return true;
         
    }
+   
+    public ArrayList<Pelicula> listarPelicula(Connection conexion) throws SQLException {
+
+        String queryStatement = "SELECT * FROM PELICULA ORDER BY ID";
+        System.out.println("Query is" + queryStatement);
+        PreparedStatement ps = conexion.prepareStatement(queryStatement);
+
+        ResultSet rs = ps.executeQuery();
+        
+        
+        ArrayList<Pelicula> listaPelicula = new ArrayList<Pelicula>();
+
+        while (rs.next()) {
+            Pelicula pelicula = new Pelicula(); // se construye un objeto dentro del while para qe no se sobreescriba 
+            pelicula.setId(rs.getInt("ID"));
+            // setear con todos sus datos 
+            pelicula.setNombre(rs.getString("NOMBRE"));
+            pelicula.setDirector(rs.getString("DIRECTOR"));
+            pelicula.setAnno(rs.getInt("ANNO"));
+            pelicula.setDuracion(rs.getInt("DURACION"));
+            pelicula.setGenero(rs.getString("GENERO"));
+            // Agregar a la lista
+            listaPelicula.add(pelicula);
+        }
+        return listaPelicula;
+        
+
+    }
+    
 
 
 

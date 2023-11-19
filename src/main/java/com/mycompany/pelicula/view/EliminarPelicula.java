@@ -88,6 +88,7 @@ public class EliminarPelicula extends javax.swing.JFrame {
         jButtonBuscar.setBackground(new java.awt.Color(153, 153, 255));
         jButtonBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBuscar.setText("BUSCAR");
+        jButtonBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonBuscar.setOpaque(true);
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,7 +127,7 @@ public class EliminarPelicula extends javax.swing.JFrame {
             .addComponent(jLabelEliminarPelicula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelIDEliminar2)
@@ -149,8 +150,8 @@ public class EliminarPelicula extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonBuscar)
-                .addGap(41, 41, 41))
+                .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(93, 93, 93)
                 .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,7 +171,7 @@ public class EliminarPelicula extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscar)
+                    .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelIDEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -188,11 +189,11 @@ public class EliminarPelicula extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelIDEliminar4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonVolver2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -226,18 +227,20 @@ public class EliminarPelicula extends javax.swing.JFrame {
         Pelicula peliculaEliminar = new Pelicula();
         System.out.println(id);
         peliculaEliminar.setId(id); 
-        peliculaEliminar.setNombre(null);
-        peliculaEliminar.setDirector(null);
-        peliculaEliminar.setAnno(Integer.valueOf(null));
-        peliculaEliminar.setDuracion(Integer.valueOf(null));
-        peliculaEliminar.setGenero(null);
-        
+
         PeliculaController controlador = new PeliculaController();
-        JOptionPane.showMessageDialog(null, "SE ElIMINÓ LA PELICULA : " + peliculaEliminar.getNombre());
+        peliculaEliminar.setNombre(jTextFieldNombre.getText());
+        JOptionPane.showMessageDialog(null, "SE ELIMINÓ LA PELICULA : " + peliculaEliminar.getNombre());
+                jTextFieldNombre.setText("");
+                jTextFieldDirector.setText("");
+                jTextFieldAnno.setText("");
+                jTextFieldDuracion.setText("");
+                jTextFieldGenero.setText("");
+        
         try{
-            controlador.modificarPeliculaController(peliculaEliminar,this.conector.getConn());       
+            controlador.eliminarPeliculaController(peliculaEliminar,this.conector.getConn());       
         }  catch (SQLException ex) {
-            Logger.getLogger(AgregarPelicula.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EliminarPelicula.class.getName()).log(Level.SEVERE, null, ex);
         }    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
@@ -258,7 +261,7 @@ public class EliminarPelicula extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No se encontro la pelicula "+pelicula.getNombre());
             }
             }catch (SQLException ex) {
-            Logger.getLogger(AgregarPelicula.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EliminarPelicula.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         System.out.println(pelicula.toString());

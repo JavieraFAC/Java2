@@ -45,7 +45,7 @@ public class PeliculaController {
     public ArrayList<Pelicula> listarPeliculasController(Connection conexion) throws SQLException{
         PeliculaDTO pelicula = new PeliculaDTO();
         
-        return pelicula.listarPelicula((Connection) conexion);
+        return pelicula.listarPelicula(conexion);
     }
    
 }

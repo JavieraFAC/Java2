@@ -21,7 +21,8 @@ import javax.swing.table.TableRowSorter;
 
 public class Listar extends javax.swing.JFrame {
     
-        private TableRowSorter trsfFiltro;
+        private TableRowSorter trsfiltro;
+
 
     public Listar(DataSourceSample conn)throws SQLException {
         initComponents();
@@ -36,9 +37,10 @@ public class Listar extends javax.swing.JFrame {
         
         ArrayList<Pelicula> listarPelicula = new ArrayList<Pelicula>();
         listarPelicula = controller.listarPeliculasController(this.conector.getConn());
+
         
         DefaultTableModel modelo = (DefaultTableModel) this.jTable1.getModel();
-        
+
         for (int i=0; i < listarPelicula.size() ; i++){
             Object[] objeto = {
             listarPelicula.get(i).getId(),
@@ -60,23 +62,27 @@ public class Listar extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabelListar = new javax.swing.JLabel();
+        TituloListar = new javax.swing.JLabel();
         jButtonVolverListar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextFieldGeneroFiltro = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        Genero = new javax.swing.JLabel();
+        FiltrarPeliculas = new javax.swing.JLabel();
+        jTextFieldFiltrarGenero = new javax.swing.JTextField();
+        Genero1 = new javax.swing.JLabel();
+        jTextFieldAnno1 = new javax.swing.JTextField();
+        jTextFieldAnno2 = new javax.swing.JTextField();
+        Genero2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(230, 250, 230));
 
-        jLabelListar.setFont(new java.awt.Font("AGRESSIVE", 0, 18)); // NOI18N
-        jLabelListar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelListar.setText("LISTAR PELICULAS");
+        TituloListar.setFont(new java.awt.Font("AGRESSIVE", 0, 18)); // NOI18N
+        TituloListar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TituloListar.setText("LISTAR PELICULAS");
 
         jButtonVolverListar.setBackground(new java.awt.Color(245, 245, 179));
         jButtonVolverListar.setText("VOLVER");
@@ -127,61 +133,84 @@ public class Listar extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(220, 220, 237));
 
-        jLabel1.setText("GENERO:");
+        Genero.setText("GENERO:");
 
-        jTextFieldGeneroFiltro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldGeneroFiltroActionPerformed(evt);
-            }
-        });
-        jTextFieldGeneroFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldGeneroFiltroKeyReleased(evt);
-            }
+        FiltrarPeliculas.setFont(new java.awt.Font("AGRESSIVE", 0, 13)); // NOI18N
+        FiltrarPeliculas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        FiltrarPeliculas.setText("FILTRAR PELICULAS");
+
+        jTextFieldFiltrarGenero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFieldGeneroFiltroKeyTyped(evt);
+                jTextFieldFiltrarGeneroKeyTyped(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("AGRESSIVE", 0, 13)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("FILTRAR PELICULAS");
+        Genero1.setText("AÑOS:");
+
+        jTextFieldAnno1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldAnno1KeyTyped(evt);
+            }
+        });
+
+        jTextFieldAnno2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldAnno2KeyTyped(evt);
+            }
+        });
+
+        Genero2.setText("entre");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(FiltrarPeliculas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel1)
+                .addGap(33, 33, 33)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Genero)
+                    .addComponent(Genero1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldGeneroFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jTextFieldAnno1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Genero2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldAnno2))
+                    .addComponent(jTextFieldFiltrarGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addContainerGap()
+                .addComponent(FiltrarPeliculas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextFieldGeneroFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13))
+                    .addComponent(Genero)
+                    .addComponent(jTextFieldFiltrarGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Genero1)
+                    .addComponent(jTextFieldAnno1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldAnno2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Genero2))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(TituloListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(145, 145, 145)
                 .addComponent(jButtonVolverListar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,14 +229,14 @@ public class Listar extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabelListar)
+                .addComponent(TituloListar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonVolverListar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,7 +247,9 @@ public class Listar extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -237,49 +268,87 @@ public class Listar extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonVolverListarActionPerformed
 
-    private void jTextFieldGeneroFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldGeneroFiltroActionPerformed
+    private void jTextFieldFiltrarGeneroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFiltrarGeneroKeyTyped
+        jTextFieldFiltrarGenero.addKeyListener(new KeyAdapter() {
+            public void keyReleased(final KeyEvent e) {
+                String cadena = jTextFieldFiltrarGenero.getText();
+                jTextFieldFiltrarGenero.setText(cadena);
+                filtro();
+            }
+        });
 
-              
-    }//GEN-LAST:event_jTextFieldGeneroFiltroActionPerformed
+        trsfiltro = new TableRowSorter(jTable1.getModel());
+        jTable1.setRowSorter(trsfiltro);
 
-    private void jTextFieldGeneroFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGeneroFiltroKeyTyped
-      jTextFieldGeneroFiltro.addKeyListener(new KeyAdapter(){
-        @Override
-        public void keyReleased(final KeyEvent e){
-            String cadena = jTextFieldGeneroFiltro.getText();
-            jTextFieldGeneroFiltro.setText(cadena);
-            filtrar();
-            
-            
-        }
-    });
-      trsfFiltro = new TableRowSorter(jTable1.getModel());
-      jTable1.setRowSorter(trsfFiltro);
-              
-    }//GEN-LAST:event_jTextFieldGeneroFiltroKeyTyped
 
-    private void jTextFieldGeneroFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGeneroFiltroKeyReleased
+    }//GEN-LAST:event_jTextFieldFiltrarGeneroKeyTyped
 
-    }//GEN-LAST:event_jTextFieldGeneroFiltroKeyReleased
+    private void jTextFieldAnno1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldAnno1KeyTyped
 
-    public void filtrar(){
-        int columnaFiltrar = 6; // columna marca
+        jTextFieldAnno1.addKeyListener(new KeyAdapter() {
+            public void keyReleased(final KeyEvent e) {
+                String cadena = jTextFieldAnno1.getText();
+                jTextFieldAnno1.setText(cadena);
+                filtroAnnos();
+            }
+        });
+
+        trsfiltro = new TableRowSorter(jTable1.getModel());
+        jTable1.setRowSorter(trsfiltro);    }//GEN-LAST:event_jTextFieldAnno1KeyTyped
+
+    private void jTextFieldAnno2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldAnno2KeyTyped
+        jTextFieldAnno2.addKeyListener(new KeyAdapter() {
+            public void keyReleased(final KeyEvent e) {
+                String cadena = jTextFieldAnno2.getText();
+                jTextFieldAnno2.setText(cadena);
+                filtroAnnos2();
+            }
+        });
+
+        trsfiltro = new TableRowSorter(jTable1.getModel());
+        jTable1.setRowSorter(trsfiltro);
+    }//GEN-LAST:event_jTextFieldAnno2KeyTyped
+
+    
+    public void filtro(){
+       int columnaFiltro = 5; // Genero
         
-        this.trsfFiltro.setRowFilter(RowFilter.regexFilter(jTextFieldGeneroFiltro.getText(), columnaFiltrar));
+        this.trsfiltro.setRowFilter(RowFilter.regexFilter(jTextFieldFiltrarGenero.getText(), columnaFiltro));
+    
     }
     
+    public void filtroAnnos() {
+
+
+            int Anno1 = Integer.parseInt(jTextFieldAnno1.getText());
+           /* int Anno2 = Integer.parseInt(jTextFieldAnno2.getText());*/
+
+            int columnaFiltro = 3;
+            this.trsfiltro.setRowFilter(RowFilter.numberFilter(RowFilter.ComparisonType.AFTER, Anno1, columnaFiltro));
+    }
+        public void filtroAnnos2() {
+
+           int Anno2 = Integer.parseInt(jTextFieldAnno2.getText());
+
+            int columnaFiltro = 3;
+            this.trsfiltro.setRowFilter(RowFilter.numberFilter(RowFilter.ComparisonType.BEFORE, Anno2, columnaFiltro));
+    }
     
         protected DataSourceSample conector;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FiltrarPeliculas;
+    private javax.swing.JLabel Genero;
+    private javax.swing.JLabel Genero1;
+    private javax.swing.JLabel Genero2;
+    private javax.swing.JLabel TituloListar;
     private javax.swing.JButton jButtonVolverListar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabelListar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextFieldGeneroFiltro;
+    private javax.swing.JTextField jTextFieldAnno1;
+    private javax.swing.JTextField jTextFieldAnno2;
+    private javax.swing.JTextField jTextFieldFiltrarGenero;
     // End of variables declaration//GEN-END:variables
 }

@@ -100,9 +100,9 @@ public class PeliculaDTO {
    
     public ArrayList<Pelicula> listarPelicula(Connection conexion) throws SQLException {
 
-        String queryStatement = "SELECT * FROM PELICULA ORDER BY ID";
-        System.out.println("Query is" + queryStatement);
-        PreparedStatement ps = conexion.prepareStatement(queryStatement);
+        String query = "SELECT ID, NOMBRE, DIRECTOR, ANNO, DURACION, GENERO FROM "+conexion.getSchema()+".PELICULA ORDER BY ID";
+        System.out.println("Query is" + query);
+        PreparedStatement ps = conexion.prepareStatement(query);
 
         ResultSet rs = ps.executeQuery();
         
@@ -111,13 +111,13 @@ public class PeliculaDTO {
 
         while (rs.next()) {
             Pelicula pelicula = new Pelicula(); // se construye un objeto dentro del while para qe no se sobreescriba 
-            pelicula.setId(rs.getInt("ID"));
+            pelicula.setId(rs.getInt(1));
             // setear con todos sus datos 
-            pelicula.setNombre(rs.getString("NOMBRE"));
-            pelicula.setDirector(rs.getString("DIRECTOR"));
-            pelicula.setAnno(rs.getInt("ANNO"));
-            pelicula.setDuracion(rs.getInt("DURACION"));
-            pelicula.setGenero(rs.getString("GENERO"));
+            pelicula.setNombre(rs.getString(2));
+            pelicula.setDirector(rs.getString(3));
+            pelicula.setAnno(rs.getInt(4));
+            pelicula.setDuracion(rs.getInt(5));
+            pelicula.setGenero(rs.getString(6));
             // Agregar a la lista
             listaPelicula.add(pelicula);
         }

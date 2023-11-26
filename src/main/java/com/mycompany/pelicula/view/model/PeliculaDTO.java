@@ -7,8 +7,6 @@ import com.mycompany.pelicula.view.model.controller.DataSourceSample;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class PeliculaDTO {
@@ -39,11 +37,9 @@ public class PeliculaDTO {
 
     
     public boolean buscarPelicula(Pelicula peliculaBusqueda, Connection conexion)throws SQLException{
-        
-        String query ="SELECT ID, NOMBRE, DIRECTOR , ANNO, DURACION, GENERO FROM "+conexion.getSchema() +".PELICULA WHERE NOMBRE=?";
-        System.out.println("Query is"+query);
-        
-        PreparedStatement ps = conexion.prepareStatement(query);
+        String queryStatement ="SELECT nombre,director,anno,duracion,genero FROM"+conexion.getSchema() +".PELICULA WHERE NOMBRE=?";
+        System.out.println("Query is"+queryStatement);
+        PreparedStatement ps = conexion.prepareStatement(queryStatement);
         
         ps.setString(1, peliculaBusqueda.getNombre());
         ResultSet rs = ps.executeQuery();
@@ -64,7 +60,7 @@ public class PeliculaDTO {
     
     
    public boolean peliculaModificada(Pelicula peliculaNueva, Connection conexion) throws SQLException{
-        String queryStatement ="UPDATE "+conexion.getSchema()+".PELICULA SET NOMBRE=?, DIRECTOR=?, ANNO=?, DURACION=?, GENERO=? WHERE ID=?";
+        String queryStatement ="SELECT nombre,director,anno,duracion,genero FROM"+conexion.getSchema() +".PELICULA WHERE NOMBRE=?";
         System.out.println("Query is"+queryStatement);
         PreparedStatement ps = conexion.prepareStatement(queryStatement);
         
@@ -73,57 +69,13 @@ public class PeliculaDTO {
         ps.setInt(3, peliculaNueva.getAnno());
         ps.setInt(4,peliculaNueva.getDuracion());
         ps.setString(5, peliculaNueva.getGenero());
-        ps.setInt(6,peliculaNueva.getId());
         
-        int resultado = ps.executeUpdate();
+        int result = ps.executeUpdate();
         
-        System.out.println("Pelicula modificada: "+resultado);
+        System.out.println("Pelicula modificada: "+result);
         return true;
 
         
-    }
-   
-   public boolean eliminarPelicula(Pelicula peliculaEliminar, Connection conexion) throws SQLException{
-        String queryStatement ="DELETE "+conexion.getSchema()+".PELICULA WHERE ID=?";
-        System.out.println("Query is"+queryStatement);
-        PreparedStatement ps = conexion.prepareStatement(queryStatement);
-        
-
-        ps.setInt(1,peliculaEliminar.getId());
-        
-        int resultado = ps.executeUpdate();
-        
-        System.out.println("Se eliminó la pelicula: "+resultado);
-        return true;
-        
-   }
-   
-    public ArrayList<Pelicula> listarPelicula(Connection conexion) throws SQLException {
-
-        String query = "SELECT ID, NOMBRE, DIRECTOR, ANNO, DURACION, GENERO FROM "+conexion.getSchema()+".PELICULA ORDER BY ID";
-        System.out.println("Query is" + query);
-        PreparedStatement ps = conexion.prepareStatement(query);
-
-        ResultSet rs = ps.executeQuery();
-        
-        
-        ArrayList<Pelicula> listaPelicula = new ArrayList<Pelicula>();
-
-        while (rs.next()) {
-            Pelicula pelicula = new Pelicula(); // se construye un objeto dentro del while para qe no se sobreescriba 
-            pelicula.setId(rs.getInt(1));
-            // setear con todos sus datos 
-            pelicula.setNombre(rs.getString(2));
-            pelicula.setDirector(rs.getString(3));
-            pelicula.setAnno(rs.getInt(4));
-            pelicula.setDuracion(rs.getInt(5));
-            pelicula.setGenero(rs.getString(6));
-            // Agregar a la lista
-            listaPelicula.add(pelicula);
-        }
-        return listaPelicula;
-        
-
     }
 
 

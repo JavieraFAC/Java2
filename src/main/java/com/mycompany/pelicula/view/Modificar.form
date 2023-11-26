@@ -28,23 +28,25 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="f6" green="e1" red="e1" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jLabelModificar" alignment="0" max="32767" attributes="0"/>
-              <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+              <Component id="jLabel1" alignment="0" pref="400" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="65" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabelIDEliminar" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelIDEliminar1" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -54,29 +56,26 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTextFieldGenero" min="-2" pref="145" max="-2" attributes="0"/>
                       <Component id="jTextFieldDuracion" min="-2" pref="145" max="-2" attributes="0"/>
                       <Component id="jTextFieldAnno" min="-2" pref="145" max="-2" attributes="0"/>
                       <Component id="jTextFieldDirector" min="-2" pref="145" max="-2" attributes="0"/>
+                      <Component id="jTextFieldGenero" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jTextFieldNombre" min="-2" pref="145" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButtonBuscar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jButtonBuscar" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
-                          <Component id="jButtonVolverMod" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-                          <Component id="jButtonModificar" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                  <Component id="jButtonModificar" min="-2" pref="145" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+                  <Component id="jButtonVolverMod" min="-2" pref="80" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -86,13 +85,15 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jLabelModificar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextFieldNombre" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="jLabelIDEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jButtonBuscar" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jTextFieldNombre" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jLabelIDEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -114,11 +115,11 @@
                       <Component id="jTextFieldGenero" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                       <Component id="jLabelIDEliminar4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="48" max="32767" attributes="0"/>
-                  <Component id="jButtonModificar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="jButtonVolverMod" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jButtonModificar" min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <Component id="jButtonVolverMod" min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -127,7 +128,7 @@
         <Component class="javax.swing.JLabel" name="jLabelModificar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="AGRESSIVE" size="13" style="0"/>
+              <Font name="AGRESSIVE" size="18" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="MODIFICAR PELICULA"/>
@@ -138,7 +139,18 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonVolverMod">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b3" green="f5" red="f5" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="VOLVER"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                </LineBorder>
+              </Border>
+            </Property>
+            <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVolverModActionPerformed"/>
@@ -153,6 +165,16 @@
         <Component class="javax.swing.JTextField" name="jTextFieldNombre">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="cc" green="0" red="66" type="rgb"/>
+                </LineBorder>
+              </Border>
+            </Property>
+            <Property name="caretColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="33" red="66" type="rgb"/>
+            </Property>
             <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
               <Point value="[-32613, -32655]"/>
             </Property>
@@ -162,23 +184,39 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNombreActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldNombreKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelIDEliminar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre:"/>
+            <Property name="text" type="java.lang.String" value="NOMBRE :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonModificar">
+        <Component class="javax.swing.JButton" name="jButtonBuscar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="MODIFICAR"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="99" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="BUSCAR"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder/>
+              </Border>
+            </Property>
+            <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModificarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBuscarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDirector">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ea" green="ea" red="ea" type="rgb"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
               <Point value="[-32613, -32655]"/>
@@ -189,10 +227,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldDirectorActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldDirectorKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldAnno">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ea" green="ea" red="ea" type="rgb"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
               <Point value="[-32613, -32655]"/>
@@ -203,10 +245,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldAnnoActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldAnnoKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDuracion">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ea" green="ea" red="ea" type="rgb"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
               <Point value="[-32613, -32655]"/>
@@ -217,25 +263,29 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldDuracionActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldDuracionKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelIDEliminar1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Director:"/>
+            <Property name="text" type="java.lang.String" value="DIRECTOR :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelIDEliminar2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="A&#xf1;o:"/>
+            <Property name="text" type="java.lang.String" value="A&#xd1;O :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelIDEliminar3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Duracion:"/>
+            <Property name="text" type="java.lang.String" value="DURACION :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldGenero">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ea" green="ea" red="ea" type="rgb"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
               <Point value="[-32613, -32655]"/>
@@ -246,19 +296,34 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldGeneroActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldGeneroKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelIDEliminar4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Genero:"/>
+            <Property name="text" type="java.lang.String" value="GENERO :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonBuscar">
+        <Component class="javax.swing.JButton" name="jButtonModificar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="BUSCAR"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="eb" red="9c" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="13" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="MODIFICAR"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="cc" green="0" red="99" type="rgb"/>
+                </LineBorder>
+              </Border>
+            </Property>
+            <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBuscarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModificarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
